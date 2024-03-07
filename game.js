@@ -1,11 +1,286 @@
-// Iteration 2: Generating two random numbers (0 to 100) and displaying the same in the game.html
+// // Iteration 2: Generating two random numbers (0 to 100) and displaying the same in the game.html
 
-// Iteration 3: Creating variables required to make the game functional
+// var number1 = Math.round(Math.random() * 100);
+// const number1box = document.getElementById("number1");
 
-// Iteration 4: Creating a variable for number 3 and a variable for storing the html element with the Id "number3"
+// var number2 = Math.round(Math.random() * 100);
+// const number2box = document.getElementById("number2");
 
-// Iteration 5: Creating a randomise function to make the game functional
+// // Iteration 3: Creating variables required to make the game functional
+// var operator;
+// var score = 0;
+// const plus = document.getElementById("plus");
+// const minus = document.getElementById("minus");
+// const mul = document.getElementById("mul");
+// const divide = document.getElementById("divide");
+// const modulus = document.getElementById("modulus");
 
-// Iteration 6: Making the Operators (button) functional
+// // Iteration 4: Creating a variable for number 3 and a variable for storing the html element with the Id "number3"
+// var number3box = document.getElementById("number3");
+// var number3;
+
+// // Iteration 5: Creating a randomise function to make the game functional and call the function randomise
+// function randomise() {
+//   number1 = Math.round(Math.random() * 100);
+//   number2 = Math.round(Math.random() * 100);
+
+//   if (number1 < number2) {
+//     var extra = number1;
+//     number1 = number2;
+//     number2 = extra;
+//   }
+
+//   operator = Math.round(Math.random() * 5);
+//   switch (operator) {
+//     case 1:
+//       number3 = number1 + number2;
+//       break;
+
+//     case 2:
+//       number3 = number1 - number2;
+//       break;
+
+//     case 3:
+//       number3 = number1 * number2;
+//       break;
+
+//     case 4:
+//       number3 = Math.floor(number1 / number2);
+//       break;
+
+//     case 5:
+//       number3 = number1 % number2;
+//       break;
+
+//     case 0:
+//       randomise();
+//   }
+
+//   number1box.innerHTML = number1;
+//   number2box.innerHTML = number2;
+//   number3box.innerHTML = number3;
+
+//   console.log(number1 + " " + number2 + " " + number3 + " " + operator);
+// }
+
+// randomise();
+
+// // Iteration 6: Making the Operators (button) functional
+// plus.onclick = () => {
+//   if (number1 + number2 === number3) {
+//     score++;
+//     randomise();
+//     resetTime(timerId);
+//   } else {
+//     location.href = "gameover.html?score=" + score;
+//   }
+// };
+
+// minus.onclick = () => {
+//   if (number1 - number2 === number3) {
+//     score++;
+//     randomise();
+//     resetTime(timerId);
+//   } else {
+//     location.href = "gameover.html?score=" + score;
+//   }
+// };
+
+// mul.onclick = () => {
+//   if (number1 * number2 === number3) {
+//     score++;
+//     randomise();
+//     resetTime(timerId);
+//   } else {
+//     location.href = "gameover.html?score=" + score;
+//   }
+// };
+
+// divide.onclick = () => {
+//   if (Math.floor(number1 / number2) === number3) {
+//     score++;
+//     randomise();
+//     resetTime(timerId);
+//   } else {
+//     location.href = "gameover.html?score=" + score;
+//   }
+// };
+
+// modulus.onclick = () => {
+//   if (number1 % number2 === number3) {
+//     score++;
+//     randomise();
+//     resetTime(timerId);
+//   } else {
+//     location.href = "gameover.html?score=" + score;
+//   }
+// };
+
+// // Iteration 7: Making Timer functional
+// var time = 20;
+// var timerId;
+
+// function startTimer() {
+//   time = 20;
+//   timer.innerHTML = time;
+//   timerId = setInterval(() => {
+//     time--;
+//     if (time == 0) location.href = "./gameover.html?score=" + score;
+//     timer.innerHTML = time;
+//   }, 1000);
+// }
+
+// function resetTime(intervalId) {
+//   clearInterval(intervalId);
+//   startTimer();
+// }
+
+// startTimer();
+
+
+
+// Iteration 2: Generating random numbers and displaying them
+let generatedNumber1 = Math.round(Math.random() * 100);
+const firstNumberDisplay = document.getElementById("number1");
+
+let generatedNumber2 = Math.round(Math.random() * 100);
+const secondNumberDisplay = document.getElementById("number2");
+
+// Iteration 3: Variables for game functionality
+let chosenOperator;
+let currentScore = 0;
+const additionButton = document.getElementById("plus");
+const subtractionButton = document.getElementById("minus");
+const multiplicationButton = document.getElementById("mul");
+const divisionButton = document.getElementById("divide");
+const modulusButton = document.getElementById("modulus");
+
+// Iteration 4: Variables for the third number and its display
+let answerDisplay = document.getElementById("number3");
+let correctAnswer;
+
+// Iteration 5: Function to generate new numbers and problem
+function generateNewProblem() {
+  generatedNumber1 = Math.round(Math.random() * 100);
+  generatedNumber2 = Math.round(Math.random() * 100);
+
+  if (generatedNumber1 < generatedNumber2) {
+    // Ensure generatedNumber1 is always larger
+
+    [generatedNumber1, generatedNumber2] = [generatedNumber2, generatedNumber1];
+  }
+
+  chosenOperator = Math.round(Math.random() * 5);
+  switch (chosenOperator) {
+    case 1:
+      correctAnswer = generatedNumber1 + generatedNumber2;
+      break;
+
+    case 2:
+      correctAnswer = generatedNumber1 - generatedNumber2;
+      break;
+
+    case 3:
+      correctAnswer = generatedNumber1 * generatedNumber2;
+      break;
+
+    case 4:
+      correctAnswer = Math.floor(generatedNumber1 / generatedNumber2);
+      break;
+
+    case 5:
+      correctAnswer = generatedNumber1 % generatedNumber2;
+      break;
+
+    default:
+      correctAnswer = generatedNumber1 + generatedNumber2;
+  }
+
+  firstNumberDisplay.innerHTML = generatedNumber1;
+  secondNumberDisplay.innerHTML = generatedNumber2;
+  answerDisplay.innerHTML = correctAnswer;
+
+  console.log(generatedNumber1, generatedNumber2, correctAnswer, chosenOperator);
+}
+
+generateNewProblem();
+
+// Iteration 6: Handling button clicks for operations
+additionButton.onclick = () => {
+  if (generatedNumber1 + generatedNumber2 === correctAnswer) {
+    currentScore++;
+    generateNewProblem();
+    resetTime(timerId);
+  } else {
+    // Handle incorrect answer
+    location.href = "./gameover.html?score=" + currentScore;
+  }
+};
+
+multiplicationButton.onclick = () => {
+  if (generatedNumber1 * generatedNumber2 === correctAnswer) {
+    currentScore++;
+    generateNewProblem();
+    resetTime(timerId);
+  } else {
+    // Handle incorrect answer
+    location.href = "./gameover.html?score=" + currentScore;
+  }
+};
+
+divisionButton.onclick = () => {
+  if (Math.floor(generatedNumber1 / generatedNumber2) === correctAnswer) {
+    currentScore++;
+    generateNewProblem();
+    resetTime(timerId);
+  } else {
+    // Handle incorrect answer
+    location.href = "./gameover.html?score=" + currentScore;
+  }
+};
+
+modulusButton.onclick = () => {
+  if (generatedNumber1 % generatedNumber2 === correctAnswer) {
+    currentScore++;
+    generateNewProblem();
+    resetTime(timerId);
+  } else {
+    // Handle incorrect answer
+    location.href = "./gameover.html?score=" + currentScore;
+  }
+};
+
+
+subtractionButton.onclick = () => {
+  if (generatedNumber1 - generatedNumber2 === correctAnswer) {
+    currentScore++;
+    generateNewProblem();
+    resetTime(timerId);
+  } else {
+    // Handle incorrect answer
+    location.href = "./gameover.html?score=" + currentScore;
+  }
+};
+
+// Iteration 7: Timer functionality
+const initialTime = 20; 
+let remainingTime = initialTime; 
+let timerId;
 
 // Iteration 7: Making Timer functional
+function startTimer() {
+  remainingTime = initialTime;
+  timerId = setInterval(() => {
+    remainingTime--;
+    if (remainingTime == 0) location.href = "./gameover.html?score=" + currentScore;
+    timer.innerHTML = remainingTime;
+  }, 1000);
+}
+
+function resetTime(intervalId) {
+  clearInterval(intervalId);
+  startTimer();
+}
+
+startTimer();
+
